@@ -22,3 +22,6 @@ samples, guidance on mobile development, and a full API reference.
 1. installed bloc pluggin in android studio
 2. created a folder myblock, right click and new>>block...
 3. 
+
+
+//flutter packages pub run build_runner watch --use-polling-watcher --delete-conflicting-outputs

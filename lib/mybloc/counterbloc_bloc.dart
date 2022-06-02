@@ -6,10 +6,17 @@ import 'package:meta/meta.dart';
 part 'counterbloc_event.dart';
 part 'counterbloc_state.dart';
 
-class CounterblocBloc extends Bloc<CounterblocEvent, CounterblocState> {
-  CounterblocBloc() : super(CounterblocInitial()) {
-    on<CounterblocEvent>((event, emit) {
-      // TODO: implement event handler
+//We are passing an instance of our initial state, to the super constructor
+
+class CounterblocBloc extends Bloc<CounterblocEvent, CounterState> {
+  CounterblocBloc() : super(InitialState()) {
+
+
+    //One event
+
+    on<Increment>((event,emit){
+      return emit(CounterState(count: state.count+1));
     });
+
   }
 }
