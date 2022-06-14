@@ -50,7 +50,7 @@ class MyHomePage extends StatelessWidget {
             ),
             BlocBuilder<CounterblocBloc,CounterState>(
               builder: (context,state){
-                print("---> BlocBuilder Called");
+                print("---> BlocBuilder Called. You can see that only this builder gets called when i increment. whole builder");
                 return Text(
                   state.count.toString(),
                   style: Theme.of(context).textTheme.headline4,
@@ -61,13 +61,26 @@ class MyHomePage extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          //use this line to perform the increment event in the bloc variable
-          context.read<CounterblocBloc>().add(Increment());
-        },
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          FloatingActionButton(
+            onPressed: (){
+              //use this line to perform the increment event in the bloc variable
+              context.read<CounterblocBloc>().add(Increment());
+            },
+            tooltip: 'Increment',
+            child: const Icon(Icons.add),
+          ),
+          SizedBox(width: 25),
+          FloatingActionButton(
+            onPressed: (){
+              context.read<CounterblocBloc>().add(Decrement());
+            },
+            tooltip: 'Increment',
+            child: const Icon(Icons.remove),
+          ),
+        ],
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
