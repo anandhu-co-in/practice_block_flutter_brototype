@@ -36,6 +36,7 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("---> build Called");
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
@@ -47,15 +48,24 @@ class MyHomePage extends StatelessWidget {
             const Text(
               'You have pushed the button this many times:',
             ),
-            Text(
-              '0000',
-              style: Theme.of(context).textTheme.headline4,
+            BlocBuilder<CounterblocBloc,CounterState>(
+              builder: (context,state){
+                print("---> BlocBuilder Called");
+                return Text(
+                  state.count.toString(),
+                  style: Theme.of(context).textTheme.headline4,
+                );
+              },
+
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
+        onPressed: (){
+          //use this line to perform the increment event in the bloc variable
+          context.read<CounterblocBloc>().add(Increment());
+        },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
