@@ -1,6 +1,8 @@
-import 'package:bloc_counter_app_brorotype/mybloc/counterbloc_bloc.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'myblocTwoWithFreezed/counter_bloc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
     //Wraped with Block Providerwidget, and this widget needs create field in it
 
     return BlocProvider(
-      create: (ctx)=>CounterblocBloc(),
+      create: (ctx)=>CounterBloc(),
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
@@ -48,7 +50,7 @@ class MyHomePage extends StatelessWidget {
             const Text(
               'You have pushed the button this many times:',
             ),
-            BlocBuilder<CounterblocBloc,CounterState>(
+            BlocBuilder<CounterBloc,CounterState>(
               builder: (context,state){
                 print("---> BlocBuilder Called. You can see that only this builder gets called when i increment. whole builder");
                 return Text(
@@ -67,7 +69,7 @@ class MyHomePage extends StatelessWidget {
           FloatingActionButton(
             onPressed: (){
               //use this line to perform the increment event in the bloc variable
-              context.read<CounterblocBloc>().add(Increment());
+              context.read<CounterBloc>().add(CounterEvent.increment());
             },
             tooltip: 'Increment',
             child: const Icon(Icons.add),
@@ -75,7 +77,7 @@ class MyHomePage extends StatelessWidget {
           SizedBox(width: 25),
           FloatingActionButton(
             onPressed: (){
-              context.read<CounterblocBloc>().add(Decrement());
+              context.read<CounterBloc>().add(Decrement()); //Or we can write as above, CounterEvent.decrfkja()
             },
             tooltip: 'Increment',
             child: const Icon(Icons.remove),
